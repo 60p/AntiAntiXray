@@ -18,9 +18,9 @@ public class Optimize extends Base {
             MinecraftClient.getInstance().player.sendMessage(Text.of("[AAX] Please provide a ore block to optimize for as argument. Currently: diamond, redstone ore or stone"), false);
             return;
         }
-        String newblock = args[1];
+        String block = args[1];
         assert MinecraftClient.getInstance().player != null;
-        switch (newblock) {
+        switch (block) {
             case "diamond":
                 Config.checkblocks = new Block[]{Blocks.DIAMOND_ORE};
 

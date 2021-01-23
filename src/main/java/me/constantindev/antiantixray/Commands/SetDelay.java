@@ -16,18 +16,18 @@ public class SetDelay extends Base {
             MinecraftClient.getInstance().player.sendMessage(Text.of("[AAX] Please provide a number as argument."), false);
             return;
         }
-        String newdelay = args[1];
-        long newdelayI;
+        String delay = args[1];
+        long delayI;
         try {
-            newdelayI = Long.parseLong(newdelay);
+            delayI = Long.parseLong(delay);
         } catch (Exception ex) {
             assert MinecraftClient.getInstance().player != null;
             MinecraftClient.getInstance().player.sendMessage(Text.of("[AAX] Please provide a VALID number as argument."), false);
             return;
         }
-        Config.delay = newdelayI;
+        Config.delay = delayI;
         assert MinecraftClient.getInstance().player != null;
-        MinecraftClient.getInstance().player.sendMessage(Text.of("[AAX] Set new delay to " + newdelayI), false);
+        MinecraftClient.getInstance().player.sendMessage(Text.of("[AAX] Set new delay to " + delayI), false);
         super.run(args);
     }
 }

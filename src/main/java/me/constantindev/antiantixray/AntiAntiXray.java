@@ -13,7 +13,7 @@ public class AntiAntiXray implements ClientModInitializer {
     public static KeyBind removeBlockBeta = new KeyBind(Config.kcRemove);
     public static List<RefreshingJob> jobs = new ArrayList<>();
 
-    public static void revealNewBlocks(int rad, long delayInMS) {
+    public static void scanForFake(int rad, long delayInMS) {
         ProgressBar pbar = new ProgressBar();
         MinecraftClient.getInstance().getToastManager().add(pbar);
         RefreshingJob rfj = new RefreshingJob(new Runner(rad, delayInMS, pbar), pbar);

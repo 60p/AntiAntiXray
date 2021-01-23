@@ -5,7 +5,7 @@ import net.minecraft.text.Text;
 
 public class CommandNotFound extends Base {
     public CommandNotFound() {
-        super("cmdnotfound", new String[]{"cmdnotfound"}, "");
+        super("not_found", new String[]{"not_found"}, "");
     }
 
     @Override

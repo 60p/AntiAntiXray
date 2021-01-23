@@ -16,18 +16,18 @@ public class SetRadius extends Base {
             MinecraftClient.getInstance().player.sendMessage(Text.of("[AAX] Please provide a number as argument."), false);
             return;
         }
-        String newrad = args[1];
-        int newradI;
+        String nr = args[1];
+        int nrI;
         try {
-            newradI = Integer.parseInt(newrad);
+            nrI = Integer.parseInt(nr);
         } catch (Exception ex) {
             assert MinecraftClient.getInstance().player != null;
             MinecraftClient.getInstance().player.sendMessage(Text.of("[AAX] Please provide a VALID number as argument."), false);
             return;
         }
-        Config.rad = newradI;
+        Config.rad = nrI;
         assert MinecraftClient.getInstance().player != null;
-        MinecraftClient.getInstance().player.sendMessage(Text.of("[AAX] Set new radius to " + newradI), false);
+        MinecraftClient.getInstance().player.sendMessage(Text.of("[AAX] Set new radius to " + nrI), false);
         super.run(args);
     }
 }

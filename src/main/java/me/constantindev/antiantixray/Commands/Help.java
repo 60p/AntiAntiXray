@@ -13,7 +13,7 @@ public class Help extends Base {
     public void run(String[] args) {
         assert MinecraftClient.getInstance().player != null;
         MinecraftClient.getInstance().player.sendMessage(Text.of("[AAX] All commands you can use:"), false);
-        Config.cmdmanager.get().forEach(base -> MinecraftClient.getInstance().player.sendMessage(Text.of("[AAX]  - " + base.name + " (" + String.join(", ", base.aliases) + "): " + base.description), false));
+        Config.manager.get().forEach(base -> MinecraftClient.getInstance().player.sendMessage(Text.of("[AAX]  - " + base.name + " (" + String.join(", ", base.aliases) + "): " + base.description), false));
         super.run(args);
     }
 }

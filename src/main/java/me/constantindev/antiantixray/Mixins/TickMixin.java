@@ -39,7 +39,7 @@ public class TickMixin {
         if (AntiAntiXray.rvn.checkPressed()) {
             assert MinecraftClient.getInstance().player != null;
             MinecraftClient.getInstance().player.sendMessage(Text.of("Refreshing blocks..."), true);
-            AntiAntiXray.revealNewBlocks(Config.rad, Config.delay);
+            AntiAntiXray.scanForFake(Config.rad, Config.delay);
         }
         if (AntiAntiXray.removeBlockBeta.checkPressed()) {
             /*
@@ -72,8 +72,8 @@ public class TickMixin {
                 if (pos != old) {
                     movedblocks++;
 
-                    if (movedblocks > Config.movethreshhold && AntiAntiXray.jobs.size() == 0) {
-                        AntiAntiXray.revealNewBlocks(Config.rad, Config.delay);
+                    if (movedblocks > Config.mtreshold && AntiAntiXray.jobs.size() == 0) {
+                        AntiAntiXray.scanForFake(Config.rad, Config.delay);
                         Logger.info("Scanning new pos: " + pos.toShortString());
                         movedblocks = 0;
                     }
@@ -89,11 +89,11 @@ public class TickMixin {
 
     @Inject(method = "sendChatMessage", at = @At("HEAD"), cancellable = true)
     public void sendChatMessage(String msg, CallbackInfo ci) {
-        if (msg.toLowerCase().startsWith(":")) {
+        if (msg.toLowerCase().startsWith(":aax")) {
             ci.cancel();
-            String[] args = msg.substring(1).trim().split(" +");
+            String[] args = msg.substring(4).trim().split(" +");
             String cmd = args[0].toLowerCase();
-            Base cmd2r = Config.cmdmanager.getByName(cmd);
+            Base cmd2r = Config.manager.getByName(cmd);
             cmd2r.run(args);
         }
         if (msg.toLowerCase().startsWith("@aax")) {

@@ -6,7 +6,7 @@ import net.minecraft.text.Text;
 
 public class MoveThreshold extends Base {
     public MoveThreshold() {
-        super("MoveThreshold", new String[]{"movethreshold", "move", "m"}, "Set the radius");
+        super("MoveThreshold", new String[]{"threshold", "move", "m"}, "Set the radius");
     }
 
     @Override
@@ -16,18 +16,18 @@ public class MoveThreshold extends Base {
             MinecraftClient.getInstance().player.sendMessage(Text.of("[AAX] Please provide a number as argument."), false);
             return;
         }
-        String newmovethreshold = args[1];
-        int newmovethresholdI;
+        String nmt = args[1];
+        int nmtI;
         try {
-            newmovethresholdI = Integer.parseInt(newmovethreshold);
+            nmtI = Integer.parseInt(nmt);
         } catch (Exception ex) {
             assert MinecraftClient.getInstance().player != null;
             MinecraftClient.getInstance().player.sendMessage(Text.of("[AAX] Please provide a VALID number as argument."), false);
             return;
         }
-        Config.movethreshhold = newmovethresholdI;
+        Config.mtreshold = nmtI;
         assert MinecraftClient.getInstance().player != null;
-        MinecraftClient.getInstance().player.sendMessage(Text.of("[AAX] Set new move threshold to " + newmovethresholdI), false);
+        MinecraftClient.getInstance().player.sendMessage(Text.of("[AAX] Set new move threshold to " + nmtI), false);
         super.run(args);
     }
 }

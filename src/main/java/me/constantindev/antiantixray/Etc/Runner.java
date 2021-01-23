@@ -12,12 +12,12 @@ public class Runner implements Runnable {
     boolean isRunning = true;
     long delay;
     int rad;
-    ProgressBar pbar;
+    ProgressBar progressBar;
 
-    public Runner(int rad, long delay, ProgressBar pbar) {
+    public Runner(int rad, long delay, ProgressBar progressBar) {
         this.rad = rad;
         this.delay = delay;
-        this.pbar = pbar;
+        this.progressBar = progressBar;
     }
 
     @SuppressWarnings("BusyWait")
@@ -30,23 +30,22 @@ public class Runner implements Runnable {
 
 
         // Blocks that aren't ores but still needs to be checked
-        Block[] checkblocks = Config.checkblocks;
+        Block[] blocks2check = Config.checkblocks;
 
         for (int cx = -rad; cx <= rad; cx++) {
             for (int cy = -rad; cy <= rad; cy++) {
                 for (int cz = -rad; cz <= rad; cz++) {
                     if (!isRunning) break;
-                    pbar.progress++;
-                    BlockPos currblock = new BlockPos(pos.getX() + cx, pos.getY() + cy, pos.getZ() + cz);
+                    progressBar.progress++;
+                    BlockPos current = new BlockPos(pos.getX() + cx, pos.getY() + cy, pos.getZ() + cz);
 
-                    Block block = MinecraftClient.getInstance().player.world.getBlockState(currblock).getBlock();
+                    Block block = MinecraftClient.getInstance().player.world.getBlockState(current).getBlock();
 
                     boolean good = Config.scanAll; // cool for else man
 
-                    // only check if block is a ore or in checkblocks (obsidian for example)
-                    for (Block checkblock : checkblocks) {
-                        if (block.equals(checkblock)) {
-                            //Logger.info(block.toString() + " Is in checkbloks or a ore");
+                    // only check if block is a ore or in blocks2check (obsidian for example)
+                    for (Block block1 : blocks2check) {
+                        if (block.equals(block1)) {
                             good = true;
                             break;
                         }
@@ -56,24 +55,20 @@ public class Runner implements Runnable {
                         continue;
                     }
 
-
-                    //Logger.info("Checking " + block.toString() + " at " + currblock.toShortString());
-
-
                     PlayerActionC2SPacket packet = new PlayerActionC2SPacket(
                             PlayerActionC2SPacket.Action.ABORT_DESTROY_BLOCK,
-                            currblock,
+                            current,
                             Direction.UP
                     );
                     conn.sendPacket(packet);
                     try {
                         Thread.sleep(delay);
-                    } catch (InterruptedException e) {
-                        //e.printStackTrace();
+                    } catch (InterruptedException ignored) {
+                        Logger.info("Shit broke somehow, this shouldn't happen. (Runner thread scanning for fake blocks got interrupted). Did you manually kill the thread?");
                     }
                 }
             }
         }
-        pbar.done = true;
+        progressBar.done = true;
     }
 }

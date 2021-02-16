@@ -5,7 +5,7 @@ For the annoying server owners that add an anti xray plugin.
 For every plugin dev reading this, you basically cant fix this unless you want everyone on the server to gain riches off fake blocks that suddently become real ;)
 
 ## Usage
-To scan nearby blocks in selected radius, press `G` ingame.
+To scan nearby blocks in selected radius, press `Y` ingame.
 
 To remove a block for testing, creating a ghost block, press `V` ingame.
 

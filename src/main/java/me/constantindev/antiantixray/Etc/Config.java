@@ -5,8 +5,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import org.lwjgl.glfw.GLFW;
 
-import java.io.IOException;
-
 public class Config {
     public static int rad = 5;
     public static long delay = 10;

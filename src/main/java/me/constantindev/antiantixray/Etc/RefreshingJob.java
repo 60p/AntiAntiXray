@@ -7,15 +7,16 @@ public class RefreshingJob {
     public Runner refresher;
     public Thread runner;
 
-    public RefreshingJob(Runner refresher, ProgressBar pbar) {
+    public RefreshingJob(Runner refresher) {
         this.refresher = refresher;
-        this.progress = pbar;
+        this.progress = refresher.progressBar;
         this.runner = new Thread(refresher);
         this.runner.start();
 
     }
 
     public void cancel() {
+        RenderHelper.queue.clear();
         refresher.isRunning = false;
         this.progress.done = true;
     }

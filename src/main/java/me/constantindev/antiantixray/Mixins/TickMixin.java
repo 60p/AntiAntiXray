@@ -36,12 +36,12 @@ public class TickMixin {
             }
         });
         AntiAntiXray.jobs = nl;
-        if (AntiAntiXray.rvn.checkPressed()) {
+        if (AntiAntiXray.remove.checkPressed()) {
             assert MinecraftClient.getInstance().player != null;
             MinecraftClient.getInstance().player.sendMessage(Text.of("Refreshing blocks..."), true);
-            AntiAntiXray.scanForFake(Config.rad, Config.delay);
+            AntiAntiXray.scanArea(Config.rad, Config.delay);
         }
-        if (AntiAntiXray.removeBlockBeta.checkPressed()) {
+        if (AntiAntiXray.createGhosts.checkPressed()) {
             /*
              * */
             for (int cx = -3; cx <= 3; cx++) {
@@ -73,7 +73,7 @@ public class TickMixin {
                     movedblocks++;
 
                     if (movedblocks > Config.mtreshold && AntiAntiXray.jobs.size() == 0) {
-                        AntiAntiXray.scanForFake(Config.rad, Config.delay);
+                        AntiAntiXray.scanArea(Config.rad, Config.delay);
                         Logger.info("Scanning new pos: " + pos.toShortString());
                         movedblocks = 0;
                     }

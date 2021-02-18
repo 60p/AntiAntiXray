@@ -2,5 +2,8 @@
   "package": "me.constantindev.antiantixray.Mixins",
   "client": [
     "TickMixin"
+  ],
+  "mixins": [
+    "WRenderer"
   ]
 }

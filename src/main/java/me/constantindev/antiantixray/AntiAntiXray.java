@@ -9,20 +9,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AntiAntiXray implements ClientModInitializer {
-    public static KeyBind rvn = new KeyBind(Config.kcScan);
-    public static KeyBind removeBlockBeta = new KeyBind(Config.kcRemove);
+    public static KeyBind remove = new KeyBind(Config.kcScan);
+    public static KeyBind createGhosts = new KeyBind(Config.kcRemove);
     public static List<RefreshingJob> jobs = new ArrayList<>();
 
-    public static void scanForFake(int rad, long delayInMS) {
-        ProgressBar pbar = new ProgressBar();
-        MinecraftClient.getInstance().getToastManager().add(pbar);
-        RefreshingJob rfj = new RefreshingJob(new Runner(rad, delayInMS, pbar), pbar);
+    public static void scanArea(int rad, long delayInMS) {
+        ProgressBar progressBar = new ProgressBar();
+        MinecraftClient.getInstance().getToastManager().add(progressBar);
+        RefreshingJob rfj = new RefreshingJob(new Runner(rad, delayInMS, progressBar));
         jobs.add(rfj);
     }
 
     @Override
     public void onInitializeClient() {
         Logger.info("Loading and initializing AAX...");
-
     }
 }

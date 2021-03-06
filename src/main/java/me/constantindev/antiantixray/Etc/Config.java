@@ -12,9 +12,8 @@ public class Config {
     public static boolean scanAll = false;
     public static boolean auto = false;
     public static int mtreshold = 5;
-    public static Block[] checkblocks = {Blocks.OBSIDIAN, Blocks.CLAY, Blocks.MOSSY_COBBLESTONE,
-            Blocks.DIAMOND_ORE, Blocks.REDSTONE_ORE, Blocks.IRON_ORE, Blocks.COAL_ORE, Blocks.LAPIS_ORE,
-            Blocks.GOLD_ORE, Blocks.EMERALD_ORE, Blocks.NETHER_GOLD_ORE, Blocks.NETHER_QUARTZ_ORE};
+    public static Block[] checkblocks = {Blocks.DIAMOND_ORE, Blocks.LAPIS_ORE, Blocks.ANCIENT_DEBRIS
+            };
     public static int kcScan = GLFW.GLFW_KEY_Y;
     public static int kcRemove = GLFW.GLFW_KEY_V;
 
